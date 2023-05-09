@@ -13,11 +13,12 @@ include 'db_connect.php';
 			          <tr>
 			            <th width="15%">Date of Report</th>
 			            <th width="20%">Case Report</th>
-			            <th width="20%">Incident Address</th>
+			            <th width="15%">Incident Address</th>
 			            <th width="10%">Status</th>
 						<th width=15%>Date Incident Occured</th>
 						<th width=10%>Time the Incident Occured</th>
 						<th width=20%> Alert of Incident</th>
+						<th width=20%> Evidence</th>
 						<th width=10%> Tracking case Id</th>
 			            <th width="10%">Action</th>
 			          </tr>
@@ -36,6 +37,7 @@ include 'db_connect.php';
 						<td><?php echo $row['dateincident'] ?></td>
 						<td><?php echo $row['timeincident'] ?></td>
 						<td><?php echo $row['statusincident'] ?></td>
+						<td><a href="download.php?file=<?php echo $row['file_upload'] ?>">Download</a></td>
 						<td><?php echo $row['tracking'] ?></td>
 			            <td class="text-center">
 			            	<button class="btn btn-primary btn-sm m-0 view_btn" type="button" data-id="<?php echo $row['id'] ?>">View</button>

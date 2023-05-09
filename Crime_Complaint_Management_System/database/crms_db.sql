@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `complaints` (
   `dateincident` varchar(100) NOT NUll,
   `timeincident` varchar(100),
   `statusincident` varchar(150) NOT NULL,
+  `file_upload` varchar(255),
   `tracking` varchar(150) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

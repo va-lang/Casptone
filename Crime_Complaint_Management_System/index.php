@@ -87,7 +87,7 @@ include('header.php');
 
 
     <!-- This a page associated with the system settings -->
-    <main id="main-field" class="bg-dark">
+  
         <?php
         $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         include $page . '.php';
@@ -95,7 +95,7 @@ include('header.php');
         ?>
 
 
-    </main>
+  
     <div class="modal fade" id="confirm_modal" role='dialog'>
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
@@ -172,7 +172,7 @@ include('header.php');
         </div>
         <br>
         <div class="container">
-            <div class="small text-center text-muted">Copyright © 2020 - <?php echo $_SESSION['system']['name'] ?> | <a href="https://www.sourcecodester.com/" target="_blank"></a></div>
+            <div class="small text-center text-muted">Copyright © 2023 - <?php echo $_SESSION['system']['name'] ?> | <a href="https://www.sourcecodester.com/" target="_blank"></a></div>
         </div>
     </footer>
 
@@ -197,9 +197,15 @@ include('header.php');
         // }
 
     })
-    // $('#manage_my_account').click(function() {
-    //     uni_modal("Manage Account", 'signup.php');
-    // })
+   
+    $('#track_case').click(function() {
+        uni_modal("Track Your Report Progess", 'trackcase.php');
+        // if('<?php echo !isset($_SESSION['login_id']) ? 1 : 0 ?>'==1){
+        //   uni_modal("Login",'login.php');
+        //   return false;
+        // }
+
+    })
 </script>
 <?php $conn->close() ?>
 

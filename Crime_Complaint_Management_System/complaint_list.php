@@ -1,4 +1,4 @@
-<?php 
+<!-- <?php 
 include 'admin/db_connect.php'; 
 ?>
 <style>
@@ -61,7 +61,7 @@ include 'admin/db_connect.php';
         <tbody>
           <?php
           $status = array("","Pending","Received","Action Made");
-          $qry = $conn->query("SELECT * FROM complaints where complainant_id = {$_SESSION['login_id']} order by unix_timestamp(date_created) desc ");
+          $qry = $conn->query("SELECT * FROM complaints where complaint_id = id order by unix_timestamp(date_created) desc ");
           while($row = $qry->fetch_array()):
           ?>
           <tr>
@@ -78,4 +78,4 @@ include 'admin/db_connect.php';
        
 <script>
     $('#complaint-tbl').dataTable();
-</script>
+</script> -->

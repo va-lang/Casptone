@@ -1,11 +1,11 @@
 <?php session_start() ?>
 <div class="container-fluid">
-	<form action="save.php" id="complaint-frm" method="POST">
+	<form action="save.php" id="complaint-frm" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="">
 		<div class="form-group">
 			<label for="" class="control-label">Report Case</label>
 			<textarea cols="30" rows="3" name="message" required="" class="form-control"></textarea>
-		</div>
+		</div> 
 		<div class="form-group">
 			<label for="" class="control-label">Incident Address</label>
 			<textarea cols="30" rows="3" name="address" required="" class="form-control"></textarea>
@@ -21,14 +21,18 @@
 		<div class="form-group">
 			<label for="" class="control-label">Status</label>
 			<select id="status-select" name="statusincident" required="" class="form-control">
-				<option value="">Select Status</option>
-				<option value="active">Investigation Needed </option>
-				<option value="inactive">Immediate Alert(Police would be assigned right away )</option>
-				<option value="pending"></option>
+				<option value="">Select Status</option> 
+				<option value="Investigation Needed">Investigation Needed </option>
+				<option value="Immediate Response(Police would be assigned right away )">Immediate Response(Police would be assigned right away )</option>
+				
   			</select>
 		</div>
 		<div class="form-group">
-			<label for="" class="control-label">Tracking Case ID</label>
+			<label for="" class="control-label">Evidence of Report[jpg,]</label>
+			<input type="file" name="file" class="form-control-file">
+		</div>
+		<div class="form-group">
+			<label for="" class="control-label">Tracking Case ID[Please Write down the ID For Reference]</label>
 			<?php
 				$length = 8; // set the desired length of the generated string
 				$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

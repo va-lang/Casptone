@@ -28,20 +28,20 @@ Class Action {
 			return 3;
 		}
 	}
-	function login2(){
+	// function login2(){
 		
-		extract($_POST);		
-		$qry = $this->db->query("SELECT * FROM complainants where email = '".$email."' and password = '".md5($password)."' ");
-		if($qry->num_rows > 0){
-			foreach ($qry->fetch_array() as $key => $value) {
-				if($key != 'passwors' && !is_numeric($key))
-					$_SESSION['login_'.$key] = $value;
-			}
-				return 1;
-		}else{
-			return 3;
-		}
-	}
+	// 	extract($_POST);		
+	// 	$qry = $this->db->query("SELECT * FROM complainants where email = '".$email."' and password = '".md5($password)."' ");
+	// 	if($qry->num_rows > 0){
+	// 		foreach ($qry->fetch_array() as $key => $value) {
+	// 			if($key != 'passwors' && !is_numeric($key))
+	// 				$_SESSION['login_'.$key] = $value;
+	// 		}
+	// 			return 1;
+	// 	}else{
+	// 		return 3;
+	// 	}
+	// }
 	function logout(){
 		session_destroy();
 		foreach ($_SESSION as $key => $value) {
@@ -64,10 +64,11 @@ Class Action {
 		if(!empty($password))
 		$data .= ", password = '".md5($password)."' ";
 		$data .= ", type = '$type' ";
-		if($type == 1)
-			$establishment_id = 0;
-		$data .= ", establishment_id = '$establishment_id' ";
+		// if($type == 1)
+		// 	$establishment_id = 0;
+		// $data .= ", establishment_id = '$establishment_id' ";
 		$chk = $this->db->query("Select * from users where username = '$username' and id !='$id' ")->num_rows;
+		echo $chk;
 		if($chk > 0){
 			return 2;
 			exit;
@@ -87,37 +88,37 @@ Class Action {
 		if($delete)
 			return 1;
 	}
-	function signup(){
-		extract($_POST);
-		$data = " name = '$name' ";
-		$data .= ", email = '$email' ";
-		$data .= ", address = '$address' ";
-		$data .= ", contact = '$contact' ";
-		$data .= ", password = '".md5($password)."' ";
-		$chk = $this->db->query("SELECT * from complainants where email ='$email' ".(!empty($id) ? " and id != '$id' " : ''))->num_rows;
-		if($chk > 0){
-			return 3;
-			exit;
-		}
-		if(empty($id))
-			$save = $this->db->query("INSERT INTO complainants set $data");
-		else
-			$save = $this->db->query("UPDATE complainants set $data where id=$id ");
-		if($save){
-			if(empty($id))
-				$id = $this->db->insert_id;
-				$qry = $this->db->query("SELECT * FROM complainants where id = $id ");
-				if($qry->num_rows > 0){
-					foreach ($qry->fetch_array() as $key => $value) {
-						if($key != 'password' && !is_numeric($key))
-							$_SESSION['login_'.$key] = $value;
-					}
-						return 1;
-				}else{
-					return 3;
-				}
-		}
-	}
+	// function signup(){
+	// 	extract($_POST);
+	// 	$data = " name = '$name' ";
+	// 	$data .= ", email = '$email' ";
+	// 	$data .= ", address = '$address' ";
+	// 	$data .= ", contact = '$contact' ";
+	// 	$data .= ", password = '".md5($password)."' ";
+	// 	$chk = $this->db->query("SELECT * from complainants where email ='$email' ".(!empty($id) ? " and id != '$id' " : ''))->num_rows;
+	// 	if($chk > 0){
+	// 		return 3;
+	// 		exit;
+	// 	}
+	// 	if(empty($id))
+	// 		$save = $this->db->query("INSERT INTO complainants set $data");
+	// 	else
+	// 		$save = $this->db->query("UPDATE complainants set $data where id=$id ");
+	// 	if($save){
+	// 		if(empty($id))
+	// 			$id = $this->db->insert_id;
+	// 			$qry = $this->db->query("SELECT * FROM complainants where id = $id ");
+	// 			if($qry->num_rows > 0){
+	// 				foreach ($qry->fetch_array() as $key => $value) {
+	// 					if($key != 'password' && !is_numeric($key))
+	// 						$_SESSION['login_'.$key] = $value;
+	// 				}
+	// 					return 1;
+	// 			}else{
+	// 				return 3;
+	// 			}
+	// 	}
+	// }
 	function update_account(){
 		extract($_POST);
 		$data = " name = '".$firstname.' '.$lastname."' ";
@@ -359,7 +360,7 @@ Class Action {
 			if($status == 2){
 				$data = " complaint_id = $id ";
 				$data .= ", responder_id = $responder_id ";
-				$data .= ", dispatched_by = {$_SESSION['login_id']} ";
+				// $data .= ", dispatched_by = {$_SESSION['login_id']} ";
 				if($chk->num_rows > 0){
 					$res = $chk->fetch_array();
 					$save2 = $this->db->query("UPDATE complaints_action $data where complaint_id = $id");
